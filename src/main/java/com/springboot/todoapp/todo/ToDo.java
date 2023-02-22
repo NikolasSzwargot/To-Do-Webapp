@@ -1,12 +1,14 @@
 package com.springboot.todoapp.todo;
 
-import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ToDo {
     private int id;
     private String ownerUsername;
+
+    @Size(min = 10, message = "Enter at least 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean done;
