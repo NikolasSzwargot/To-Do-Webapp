@@ -4,10 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,6 +46,12 @@ public class ToDoController {
         String username = (String) model.get("name");
         toDoService.addTodo(username, todo.getDescription(),
                 LocalDate.now().plusYears(1), false);
+        return "redirect:list-todo";
+    }
+
+    @RequestMapping("delete-todo")
+    public String getTodoListPageAfterDelete(@RequestParam int id){
+        toDoService.deleteTodoById(id);
         return "redirect:list-todo";
     }
 }
